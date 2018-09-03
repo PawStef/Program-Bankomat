@@ -1,21 +1,17 @@
 #include <iostream>
+#include <stdlib.h>
 
 using namespace std;
 
 int sprawdzeniePin();
 void wyswietlMenu();
+int wyborOpcji();
 
 int main()
 {
     sprawdzeniePin();
     wyswietlMenu();
-
-    int opcja;
-    cin >> opcja;
-
-        if (opcja == 1) {
-            cout << "Podaj kwote " << endl;
-        }
+    wyborOpcji();
 
     return 0;
 }
@@ -32,8 +28,7 @@ int sprawdzeniePin() {
         cin >> kod;
 
         if(pin != kod) {
-           cout << "Kod PIN niepoprawny" << endl;
-           cout << endl;
+        cout << "Kod PIN niepoprawny" << endl;
         }
     } while (pin != kod);
 
@@ -45,5 +40,28 @@ void wyswietlMenu() {
     cout << "1. Wyplac gotowke" << endl;
     cout << "2. Sprawdz stan konta" << endl;
     cout << "3. Zmien PIN" << endl;
+    cout << "4. Rezygnacja" << endl;
     cout << "Wybor: " << endl;
+};
+
+int wyborOpcji(){
+    int opcja;
+    cin >> opcja;
+
+    switch (opcja) {
+    case 1:
+        cout << "Podaj kwote: " << endl;
+    break;
+    case 2:
+        cout << "Stan konta: " << endl;
+    break;
+    case 3:
+        cout << "Podaj nowy PIN: " << endl;
+    break;
+    case 4:
+        exit(0);
+    break;
+    default: cout<< "Wybierz wlasciwa opcje";
+    }
+
 };
