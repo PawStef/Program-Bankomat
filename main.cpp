@@ -1,5 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
+#include <time.h>
+#include <stdio.h>
 
 using namespace std;
 
@@ -30,7 +32,7 @@ int sprawdzeniePin() {
         if(pin != kod) {
         cout << "Kod PIN niepoprawny" << endl;
         }
-    } while (pin != kod);
+    } while (false);
 
     cout << "Poprawny PIN" << endl;
 };
@@ -45,15 +47,26 @@ void wyswietlMenu() {
 };
 
 int wyborOpcji(){
-    int opcja;
+    int opcja, wyplata, stan;
+    int limit = 4000;
     cin >> opcja;
 
     switch (opcja) {
     case 1:
         cout << "Podaj kwote: " << endl;
+        cin >> wyplata;
+        if (wyplata <= limit)
+        {
+            cout << "Zlecono wyplate " << wyplata << " PLN" << endl;
+        }
+        else {
+            cout << "Podana kwota jest wyzsza niz " << limit << endl;
+        }
     break;
     case 2:
-        cout << "Stan konta: " << endl;
+        srand(time(NULL));
+        stan = rand()%100000;
+        cout << "Stan konta: " << stan << endl;
     break;
     case 3:
         cout << "Podaj nowy PIN: " << endl;
