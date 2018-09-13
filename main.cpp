@@ -24,6 +24,7 @@ int sprawdzeniePin() {
 
     int pin = 1234;
     int kod;
+    int proba = 1;
 
     do {
         cout << "Podaj numer PIN: ";
@@ -31,11 +32,17 @@ int sprawdzeniePin() {
 
         if(pin != kod) {
         cout << "Kod PIN niepoprawny" << endl;
+        proba++;
+            if (proba > 3) {
+                cout << "Zbyt wiele prob" << endl;
+                exit(0);
+            }
         }
-    } while (false);
+    } while (pin != kod);
 
     cout << "Poprawny PIN" << endl;
 };
+
 
 void wyswietlMenu() {
     cout << "Wybierz rodzaj dzialania: " << endl;
@@ -46,7 +53,7 @@ void wyswietlMenu() {
     cout << "Wybor: " << endl;
 };
 
-int wyborOpcji(){
+int wyborOpcji() {
     int opcja, wyplata, stan;
     int limit = 4000;
     cin >> opcja;
@@ -55,12 +62,13 @@ int wyborOpcji(){
     case 1:
         cout << "Podaj kwote: " << endl;
         cin >> wyplata;
-        if (wyplata <= limit)
+        if (wyplata > limit)
+        {
+            cout << "Podana kwota jest wyzsza niz " << limit << endl;
+        }
+        else
         {
             cout << "Zlecono wyplate " << wyplata << " PLN" << endl;
-        }
-        else {
-            cout << "Podana kwota jest wyzsza niz " << limit << endl;
         }
     break;
     case 2:
@@ -74,7 +82,7 @@ int wyborOpcji(){
     case 4:
         exit(0);
     break;
-    default: cout<< "Wybierz wlasciwa opcje";
+    default: cout<< "Wybierz wlasciwa opcje ";
     }
 
 };
