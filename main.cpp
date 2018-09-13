@@ -26,17 +26,20 @@ int sprawdzeniePin() {
     int kod;
     int proba = 1;
 
-    do {
+    do
+    {
         cout << "Podaj numer PIN: ";
         cin >> kod;
 
-        if(pin != kod) {
-        cout << "Kod PIN niepoprawny" << endl;
-        proba++;
-            if (proba > 3) {
-                cout << "Zbyt wiele prob" << endl;
-                exit(0);
-            }
+        if(pin != kod)
+        {
+            cout << "Kod PIN niepoprawny" << endl;
+            proba++;
+                if (proba > 3)
+                {
+                    cout << "Zbyt wiele prob" << endl;
+                    exit(0);
+                }
         }
     } while (pin != kod);
 
@@ -44,7 +47,8 @@ int sprawdzeniePin() {
 };
 
 
-void wyswietlMenu() {
+void wyswietlMenu()
+{
     cout << "Wybierz rodzaj dzialania: " << endl;
     cout << "1. Wyplac gotowke" << endl;
     cout << "2. Sprawdz stan konta" << endl;
@@ -53,18 +57,24 @@ void wyswietlMenu() {
     cout << "Wybor: " << endl;
 };
 
-int wyborOpcji() {
-    int opcja, wyplata, stan;
+int wyborOpcji()
+{
+    int opcja, wyplata, stan, nowyPin, nowyPinSpr;
     int limit = 4000;
     cin >> opcja;
 
-    switch (opcja) {
+    switch (opcja)
+    {
     case 1:
         cout << "Podaj kwote: " << endl;
         cin >> wyplata;
         if (wyplata > limit)
         {
             cout << "Podana kwota jest wyzsza niz " << limit << endl;
+        }
+        else if (wyplata%50 != 0)
+        {
+            cout << "Podana kwota nie jest wielokrotnoscia 50 PLN" << endl;
         }
         else
         {
@@ -78,11 +88,22 @@ int wyborOpcji() {
     break;
     case 3:
         cout << "Podaj nowy PIN: " << endl;
+        cin >> nowyPin;
+        cout << "Wprowadz ponownie nowy PIN" << endl;
+        cin >> nowyPinSpr;
+
+        if (nowyPin == nowyPinSpr)
+        {
+            cout << "Zmieniono kod PIN" << endl;
+        }
+        else
+        {
+            cout << "Nie zmieniono kodu PIN" << endl;
+        }
     break;
     case 4:
         exit(0);
     break;
     default: cout<< "Wybierz wlasciwa opcje ";
     }
-
 };
